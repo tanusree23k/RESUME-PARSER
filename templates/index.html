@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <title>AI Resume Parser</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>📄 AI Resume Parser</h1>
+      <p>Upload your resume and extract information instantly.</p>
+
+      <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="resume" required />
+        <br /><br />
+        <button type="submit">Parse Resume</button>
+      </form>
+
+      {% if result %}
+      <div class="result-card">
+        <h2>Extracted Information</h2>
+
+        <p><b>Email:</b> {{ result.email }}</p>
+        <p><b>Phone:</b> {{ result.phone }}</p>
+
+        <p><b>Skills:</b></p>
+        <ul>
+          {% for skill in result.skills %}
+          <li>{{ skill }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
+%}
